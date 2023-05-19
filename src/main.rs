@@ -1,13 +1,11 @@
-use bevy::{
-    diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin},
-    prelude::*,
-    window::{WindowResizeConstraints, WindowResolution},
-};
+use bevy::{prelude::*, window::WindowResolution};
 use bevy_pixels::prelude::*;
 
-const SCREEN_WIDTH: u32 = 640;
-const SCREEN_HEIGHT: u32 = 480;
-const SCALE_FACTOR: f32 = 2.0;
+const SCREEN_WIDTH: u32 = 800;
+const SCREEN_HEIGHT: u32 = 600;
+const SCALE_FACTOR: f32 = 1.0;
+
+const COLOR_AMSTRAD_BLUE: Color = Color(0x00, 0x00, 0x7f, 0xff);
 
 const LETTER_H: [u8; 64] = [
     0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0,
@@ -98,7 +96,7 @@ fn main() {
 
 fn setup(mut commands: Commands) {
     let letter = LetterBundle {
-        position: Position { x: 8, y: 8 },
+        position: Position { x: 79, y: 99 },
         size: Size {
             width: 8,
             height: 8,
@@ -112,7 +110,15 @@ fn draw_background(mut wrapper_query: Query<&mut PixelsWrapper>) {
     let Ok(mut wrapper) = wrapper_query.get_single_mut() else { return };
     let frame = wrapper.pixels.frame_mut();
 
-    frame.copy_from_slice(&[0x00, 0x00, 0xff, 0xff].repeat(frame.len() / 4));
+    frame.copy_from_slice(
+        &[
+            COLOR_AMSTRAD_BLUE.0,
+            COLOR_AMSTRAD_BLUE.1,
+            COLOR_AMSTRAD_BLUE.2,
+            COLOR_AMSTRAD_BLUE.3,
+        ]
+        .repeat(frame.len() / 4),
+    );
 }
 
 fn draw_letter(
