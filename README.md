@@ -1,5 +1,5 @@
 # bevy_pixel_display_test
-Some investigations using bevy_pixel to display Amstrad-like text
+Some investigations using the cool bevy_pixels (https://github.com/dtcristo/bevy_pixels) to display Amstrad-like text.
 
 # How to execute the code?
 Assuming you have the whole RUST suite installed:
